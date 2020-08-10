@@ -1,5 +1,7 @@
 //Search URL = https://api.twitter.com/1.1/trends/place.json?id=23424977
 
+let twitterTrends = [];
+
 function getTrends() {
   var myHeaders = new Headers();
   myHeaders.append(
@@ -17,12 +19,21 @@ function getTrends() {
     redirect: "follow",
   };
 
-  const url = "https://api.twitter.com/1.1/trends/place.json?id=23424977";
+  const url =
+    "https://cors-anywhere-gp.herokuapp.com/https://api.twitter.com/1.1/trends/place.json?id=23424977";
 
   fetch(url, requestOptions)
     .then((response) => response.json())
-    .then((responseJson) => console.log(responseJson))
+    .then((responseJson) => topFive(responseJson))
     .catch((error) => console.log("error", error));
+}
+
+function topFive(responseJson) {
+  console.log(responseJson.trends[0].name);
+  for (let i = 0; i < 5; i++) {
+    twitterTrends.push(responseJson.trends[i].name);
+  }
+  console.log(twitterTrends);
 }
 
 getTrends();
