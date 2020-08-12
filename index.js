@@ -1,6 +1,7 @@
 //Search URL = https://api.twitter.com/1.1/trends/place.json?id=23424977
 
 let twitterTrends = [];
+let topNews = [];
 
 function getTrends() {
   var myHeaders = new Headers();
@@ -32,7 +33,34 @@ function topFive(responseJson) {
   for (let i = 0; i < 5; i++) {
     twitterTrends.push(responseJson[0].trends[i].name);
   }
-  console.log(twitterTrends);
 }
 
-getTrends();
+function getNews() {
+  console.log(twitterTrends);
+  for (let i = 0; i < 5; i++) {
+    fetch(
+      `https://google-news.p.rapidapi.com/v1/topic_headlines?country=US&lang=en&topic=${twitterTrends[i]}`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "google-news.p.rapidapi.com",
+          "x-rapidapi-key":
+            "af2f355581msh9a32bc4ec2970e5p15799djsn5c391589925d",
+        },
+      }
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}
+
+function testing() {
+  getTrends();
+  getNews();
+}
+
+testing();
