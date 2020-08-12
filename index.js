@@ -33,6 +33,7 @@ function topFive(responseJson) {
   for (let i = 0; i < 5; i++) {
     twitterTrends.push(responseJson[0].trends[i].name);
   }
+  getNews();
 }
 
 function getNews() {
@@ -58,9 +59,4 @@ function getNews() {
   }
 }
 
-function testing() {
-  getTrends();
-  getNews();
-}
-
-testing();
+getTrends();
