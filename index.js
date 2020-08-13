@@ -43,7 +43,7 @@ function getNews(topic, index) {
   // make an api call w/ that topic
   // push those news into the array of news
   fetch(
-    `http://newsapi.org/v2/everything?q=${topic}&apiKey=4963ba8ddaed4ec193d5b70fe3939b82&pageSize=5`
+    `https://newsapi.org/v2/everything?q=${topic}&apiKey=4963ba8ddaed4ec193d5b70fe3939b82&pageSize=5`
   )
     /*fetch(
     `https://google-news.p.rapidapi.com/v1/search?country=US&to=5&lang=en&q=${topic}`,
