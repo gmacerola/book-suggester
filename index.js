@@ -102,7 +102,7 @@ function renderData() {
     html += "<ul class='articles'>";
     for (let j = 0; j < topNews[i].length; j++) {
       html += `<li>
-        <div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
+        
         <h3>${topNews[i][j].name}</h3>
         <p>${topNews[i][j].description}</p>
       </li>`;
@@ -117,3 +117,5 @@ function renderData() {
 }
 
 getTrends();
+
+//<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
