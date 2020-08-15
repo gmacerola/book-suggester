@@ -5,3 +5,32 @@
 .hidden {
   display: none;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.thumbnail {
+  height: 150px;
+  background-size: cover;
+  background-position: top center;
+}
+
+ul.articles {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+ul.articles li {
+  flex: 1;
+  margin: 10px;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  background-color: lightpink;
+  padding: 10px;
+}
