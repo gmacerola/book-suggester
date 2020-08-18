@@ -6,6 +6,10 @@
   display: none;
 }
 
+body {
+  background-image: url("images/twitter-background.png");
+}
+
 .wrapper {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
@@ -31,6 +35,22 @@ ul.articles li {
   margin: 10px;
   min-width: 200px;
   border: 1px solid #ccc;
-  background-color: lightpink;
+  background-color: #aee6f2;
   padding: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.startPage {
+  text-align: center;
+}
+
+h3 {
+  margin-top: 0px;
+}
+
+.restart {
+  text-align: center;
 }

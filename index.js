@@ -43,24 +43,6 @@ function topFive(responseJson) {
 }
 
 function getNews(topic, index) {
-  // make an api call w/ that topic
-  // push those news into the array of news
-  /*fetch(
-    `https://newsapi.org/v2/everything?q=${topic}&apiKey=4963ba8ddaed4ec193d5b70fe3939b82&pageSize=5`
-  )*/
-  /*fetch(
-    `https://google-news.p.rapidapi.com/v1/search?country=US&to=5&lang=en&q=${topic}`,
-    {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "google-news.p.rapidapi.com",
-        "x-rapidapi-key": "af2f355581msh9a32bc4ec2970e5p15799djsn5c391589925d",
-      },
-    }
-  )*/
-  /*fetch(
-    `https://gnews.io/api/v3/search?q=${topic}&max=2&token=c4f50db60162137467804706598b52f1`
-  )*/
   var myHeaders = new Headers();
   myHeaders.append(
     "Ocp-Apim-Subscription-Key",
@@ -79,9 +61,8 @@ function getNews(topic, index) {
     .then((response) => response.json())
     .then((result) => {
       topNews[index] = result.value;
-      //topNews[index] = result.value.slice(0, 5);
       checkNewsDone();
-    }) // topNews [[article1,2,3,4,5],[1,2,3,4,5]]
+    })
     .catch((error) => console.log("error", error));
 }
 
@@ -94,7 +75,6 @@ function checkNewsDone() {
 }
 
 function renderData() {
-  // twitterTrends
   let html = "";
   for (let i = 0; i < twitterTrends.length; i++) {
     html += "<section class='news'>";
@@ -109,13 +89,42 @@ function renderData() {
     }
     html += "</ul></section>";
   }
-
+  html +=
+    "<div class='restart'><button type='button' style='text-align: center;' class='js-startButton button'>Get Again?</button></div>";
   $("#results").html(html);
 
   console.log();
   // newsArray
 }
 
-getTrends();
+function watchForm() {
+  getTrends();
+  $(".js-startButton").on("click", function (event) {
+    $(".startPage").addClass("hidden");
+    $("#results").removeClass("hidden");
+  });
+}
+
+$(watchForm);
 
 //<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
+//topNews[index] = result.value.slice(0, 5);
+//<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
+// make an api call w/ that topic
+// push those news into the array of news
+/*fetch(
+    `https://newsapi.org/v2/everything?q=${topic}&apiKey=4963ba8ddaed4ec193d5b70fe3939b82&pageSize=5`
+  )*/
+/*fetch(
+    `https://google-news.p.rapidapi.com/v1/search?country=US&to=5&lang=en&q=${topic}`,
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "google-news.p.rapidapi.com",
+        "x-rapidapi-key": "af2f355581msh9a32bc4ec2970e5p15799djsn5c391589925d",
+      },
+    }
+  )*/
+/*fetch(
+    `https://gnews.io/api/v3/search?q=${topic}&max=2&token=c4f50db60162137467804706598b52f1`
+  )*/
