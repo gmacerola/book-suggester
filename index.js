@@ -91,9 +91,6 @@ function renderData() {
   }
   html += "<button type='button' class='js-restart button'>Get Now!</button>";
   $("#results").html(html);
-
-  console.log();
-  // newsArray
 }
 
 function getAgain() {
