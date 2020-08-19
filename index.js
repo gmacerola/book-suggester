@@ -82,22 +82,27 @@ function renderData() {
     html += "<ul class='articles'>";
     for (let j = 0; j < topNews[i].length; j++) {
       html += `<li>
-        
+        <div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
         <h3>${topNews[i][j].name}</h3>
         <p>${topNews[i][j].description}</p>
       </li>`;
     }
     html += "</ul></section>";
   }
-  html +=
-    "<div class='restart'><button type='button' style='text-align: center;' class='js-startButton button'>Get Again?</button></div>";
+  html += "<button type='button' class='js-restart button'>Get Now!</button>";
   $("#results").html(html);
 
   console.log();
   // newsArray
 }
 
-function watchForm() {
+function getAgain() {
+  $("#results").addClass("hidden");
+  $("#results").html("");
+  $(".startPage").removeClass("hidden");
+}
+
+function watchStart() {
   getTrends();
   $(".js-startButton").on("click", function (event) {
     $(".startPage").addClass("hidden");
@@ -105,7 +110,8 @@ function watchForm() {
   });
 }
 
-$(watchForm);
+$(watchStart);
+$(getAgain);
 
 //<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
 //topNews[index] = result.value.slice(0, 5);
