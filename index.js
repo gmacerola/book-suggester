@@ -40,6 +40,7 @@ function topFive(responseJson) {
       1000
     );
   }
+  showTrends();
 }
 
 function getNews(topic, index) {
@@ -82,21 +83,43 @@ function renderData() {
     html += "<ul class='articles'>";
     for (let j = 0; j < topNews[i].length; j++) {
       html += `<li>
-        <div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
-        <h3>${topNews[i][j].name}</h3>
+        ${
+          topNews[i][j].image && topNews[i][j].image.thumbnail
+            ? `<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>`
+            : ""
+        }
+        <h3><a href="${topNews[i][j].url}" target="_blank">${
+        topNews[i][j].name
+      }</a></h3>
         <p>${topNews[i][j].description}</p>
       </li>`;
     }
     html += "</ul></section>";
   }
-  html += "<button type='button' class='js-restart button'>Get Now!</button>";
+  html +=
+    "<button type='button' class='js-restart button'>Refresh Results</button>";
   $("#results").html(html);
 }
 
+function showTrends() {
+  let html = "";
+  html += "<section class='twitter'>";
+  html += "<ul class='trends'>";
+  for (let i = 0; i < 5; i++) {
+    html += `<li>${twitterTrends[i]}</li>`;
+  }
+  html += "</ul></section>";
+  $(".topFiveTrends").html(html);
+}
+
 function getAgain() {
-  $("#results").addClass("hidden");
-  $("#results").html("");
-  $(".startPage").removeClass("hidden");
+  $("#results").on("click", ".js-restart", function () {
+    $("#results").html("");
+    twitterTrends = [];
+    topNews = [];
+    numOfCompleted = 0;
+    getTrends();
+  });
 }
 
 function watchStart() {
