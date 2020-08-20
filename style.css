@@ -30,6 +30,14 @@ body {
   margin: 10px auto;
 }
 
+.topFiveTrends {
+  margin
+}
+
+.start {
+  padding-top: 50px;
+}
+
 ul.trends {
   list-style: none;
   padding: 0;
@@ -106,11 +114,19 @@ button {
 
 .js-startButton {
   color: #2eaced;
+  background-color: white;
+  position: fixed;
+  top: 40%;
 }
 
 .js-restart {
-  text-align: center;
-  margin: 10px auto;
   background-color: #2eaced;
   color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  padding: 10px;
 }
