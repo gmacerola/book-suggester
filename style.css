@@ -44,6 +44,10 @@ ul.trends {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 ul.trends li {
@@ -100,6 +104,15 @@ h3 {
 
 .restart {
   text-align: center;
+}
+
+.startButton {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
 }
 
 button {

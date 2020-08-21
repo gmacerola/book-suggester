@@ -126,6 +126,8 @@ function watchStart() {
   getTrends();
   $(".js-startButton").on("click", function (event) {
     $(".startPage").addClass("hidden");
+    $(".topFiveTrends").addClass("hidden");
+    $(".startButton").addClass("hidden");
     $("#results").removeClass("hidden");
   });
 }
