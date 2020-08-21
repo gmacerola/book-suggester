@@ -35,7 +35,17 @@ body {
 }
 
 .start {
-  padding-top: 50px;
+  display: flex;
+  width: 80%;
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 ul.trends {
@@ -140,6 +150,18 @@ button {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 250px;
   padding: 10px;
+}
+
+a {
+  color:white;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: #ccc;
 }
