@@ -1,9 +1,9 @@
-//Search URL = https://api.twitter.com/1.1/trends/place.json?id=23424977
-
 let twitterTrends = [];
 let topNews = [];
 let numOfCompleted = 0;
 
+//Gets Twitter trends Json and pushes them into topFive() function
+//Had to send the twitter api to the cors-anywhere server I copied for this prroject due to lack of support
 function getTrends() {
   var myHeaders = new Headers();
   myHeaders.append(
@@ -30,6 +30,9 @@ function getTrends() {
     .catch((error) => console.log("error", error));
 }
 
+//Status of load is printed and pushes only the first 5 twitter trends to the twitterTrends array
+//Sends the trend, without # to getNews() function
+//After all 5 sent to getNews, showTrends() function runs to show the top 5 on the landing page
 function topFive(responseJson) {
   $("#results").html("<h2>Loading Twitter Trends...</h2>");
   for (let i = 0; i < 5; i++) {
@@ -43,6 +46,7 @@ function topFive(responseJson) {
   showTrends();
 }
 
+//Grabs the top news from bing news for each twitter trend and funnels them to topNews array
 function getNews(topic, index) {
   var myHeaders = new Headers();
   myHeaders.append(
@@ -67,6 +71,7 @@ function getNews(topic, index) {
     .catch((error) => console.log("error", error));
 }
 
+//Prints status of complete and also caps articles to 5
 function checkNewsDone() {
   numOfCompleted++;
   $("#results").append(`<p>Loading ${numOfCompleted} of 5</p>`);
@@ -75,6 +80,9 @@ function checkNewsDone() {
   }
 }
 
+//Adds section, name of trend, ul and then the li's consist of picture, art headline, and brief description
+//Article headline is clickable and goes to a new tab in browser
+//Adds button to refresh results if you want. This will rarely be used as trends dont change fast enough to give new results within a 30 min time
 function renderData() {
   let html = "";
   for (let i = 0; i < twitterTrends.length; i++) {
@@ -101,6 +109,8 @@ function renderData() {
   $("#results").html(html);
 }
 
+//Adds html to the landing page so you can see the trends prior to seeing the articles
+//Allows users to walk away if they aren't interested in any of the trending topics
 function showTrends() {
   let html = "";
   html += "<section class='twitter'>";
@@ -112,6 +122,8 @@ function showTrends() {
   $(".topFiveTrends").html(html);
 }
 
+//Wipes out the html and resets blank values to arrays used so we can start fresh
+//more often than not if clicked soon (within 10 mins) the refreshed page will look almost identical due to trends staying the same and news isn't printed that quickly usually
 function getAgain() {
   $("#results").on("click", ".js-restart", function () {
     $("#results").html("");
@@ -122,6 +134,8 @@ function getAgain() {
   });
 }
 
+//Looks for user to click initial button
+//Due to time, I run the getTrends function prior to the click to it is pulling in the background and basically ready for the user when they click
 function watchStart() {
   getTrends();
   $(".js-startButton").on("click", function (event) {
@@ -134,25 +148,3 @@ function watchStart() {
 
 $(watchStart);
 $(getAgain);
-
-//<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
-//topNews[index] = result.value.slice(0, 5);
-//<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>
-// make an api call w/ that topic
-// push those news into the array of news
-/*fetch(
-    `https://newsapi.org/v2/everything?q=${topic}&apiKey=4963ba8ddaed4ec193d5b70fe3939b82&pageSize=5`
-  )*/
-/*fetch(
-    `https://google-news.p.rapidapi.com/v1/search?country=US&to=5&lang=en&q=${topic}`,
-    {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "google-news.p.rapidapi.com",
-        "x-rapidapi-key": "af2f355581msh9a32bc4ec2970e5p15799djsn5c391589925d",
-      },
-    }
-  )*/
-/*fetch(
-    `https://gnews.io/api/v3/search?q=${topic}&max=2&token=c4f50db60162137467804706598b52f1`
-  )*/
