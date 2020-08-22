@@ -6,15 +6,15 @@
 
 ### Initial User Stories
 
-![User Stories](https://docs.google.com/spreadsheets/d/1seB0uE_T9vhubFiaL3A8fBBGJ9D2geJ-vwJMkRtc6zo/edit?usp=sharing)
+[User Stories](https://docs.google.com/spreadsheets/d/1seB0uE_T9vhubFiaL3A8fBBGJ9D2geJ-vwJMkRtc6zo/edit?usp=sharing)
 
 ### Initial User Flow
 
-![User Flow](https://drive.google.com/file/d/1CKazs_Jo4zM9x_2ySbqFXrBJBLzrgtUO/view?usp=sharing)
+[User Flow](https://drive.google.com/file/d/1CKazs_Jo4zM9x_2ySbqFXrBJBLzrgtUO/view?usp=sharing)
 
 ### Initial Wireframes
 
-![Wireframes](https://drive.google.com/file/d/1hJdt_2fjiIX-5N7Sn3Ba6_AvV_cFeHty/view?usp=sharing)
+[Wireframes](https://drive.google.com/file/d/1hJdt_2fjiIX-5N7Sn3Ba6_AvV_cFeHty/view?usp=sharing)
 
 ## Screenshots
 
