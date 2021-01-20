@@ -40,7 +40,7 @@ function topFive(responseJson) {
     twitterTrends.push(responseJson[0].trends[i].name);
     setTimeout(
       () => getNews(responseJson[0].trends[i].name.replace("#", ""), i),
-      1000
+      2000
     );
   }
   showTrends();
@@ -48,24 +48,23 @@ function topFive(responseJson) {
 
 //Grabs the top news from bing news for each twitter trend and funnels them to topNews array
 function getNews(topic, index) {
-  var myHeaders = new Headers();
-  myHeaders.append(
-    "Ocp-Apim-Subscription-Key",
-    "fae2d3935f5847c08503ac19fe08aa52"
-  );
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
   };
+
+  var params = {
+    api_token: "osDroSgfLIybDzrBaM59PSoRsfjn4k9tSoVMwXYb",
+    search: { topic },
+    limit: "5",
+  };
+
   fetch(
-    `https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=${topic}&count=5`,
+    `https://api.thenewsapi.com/v1/news/all?api_token=osDroSgfLIybDzrBaM59PSoRsfjn4k9tSoVMwXYb&search=${topic}&limit=5&language=en`,
     requestOptions
   )
     .then((response) => response.json())
     .then((result) => {
-      topNews[index] = result.value;
+      topNews[index] = result;
       checkNewsDone();
     })
     .catch((error) => console.log("error", error));
@@ -89,17 +88,17 @@ function renderData() {
     html += "<section class='news'>";
     html += `<h2>${twitterTrends[i]}</h2>`;
     html += "<ul class='articles'>";
-    for (let j = 0; j < topNews[i].length; j++) {
+    for (let j = 0; j < 5; j++) {
       html += `<li>
         ${
-          topNews[i][j].image && topNews[i][j].image.thumbnail
-            ? `<div class="thumbnail" style="background-image:url('${topNews[i][j].image.thumbnail.contentUrl}')"></div>`
+          topNews[i].data[j].image_url
+            ? `<div class="thumbnail" style="background-image:url('${topNews[i].data[j].image_url}')"></div>`
             : ""
         }
-        <h3><a href="${topNews[i][j].url}" target="_blank">${
-        topNews[i][j].name
+        <h3><a href="${topNews[i].data[j].url}" target="_blank">${
+        topNews[i].data[j].title
       }</a></h3>
-        <p>${topNews[i][j].description}</p>
+        <p>${topNews[i].data[j].snippet}</p>
       </li>`;
     }
     html += "</ul></section>";
