@@ -88,7 +88,7 @@ function renderData() {
     html += "<section class='news'>";
     html += `<h2>${twitterTrends[i]}</h2>`;
     html += "<ul class='articles'>";
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < topNews[i].data.length; j++) {
       html += `<li>
         ${
           topNews[i].data[j].image_url
